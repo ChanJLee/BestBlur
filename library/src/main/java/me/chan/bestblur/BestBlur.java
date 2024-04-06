@@ -6,6 +6,7 @@ import android.view.View;
 
 import androidx.annotation.NonNull;
 
+import me.chan.bestblur.v21.BlurEffectV21;
 import me.chan.bestblur.v31.BlurEffectV31;
 
 public class BestBlur {
@@ -44,7 +45,7 @@ public class BestBlur {
 			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
 				return new BlurEffectV31(this);
 			} else {
-				throw new RuntimeException("Not implement yet");
+				return new BlurEffectV21(this);
 			}
 		}
 	}

@@ -1,4 +1,4 @@
-package me.chan.bestblur.wrapper;
+package me.chan.bestblur.v21;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -6,9 +6,11 @@ import android.widget.FrameLayout;
 
 import androidx.annotation.NonNull;
 
-import me.chan.bestblur.BlurEffect;
+class BestBlurWrapper extends FrameLayout {
 
-public class BestBlurWrapper extends FrameLayout {
+	private boolean mShowBlur = false;
+	private final BlurBuffer mBuffer = new BlurBuffer();
+
 
 	public BestBlurWrapper(@NonNull Context context) {
 		super(context);
@@ -16,13 +18,26 @@ public class BestBlurWrapper extends FrameLayout {
 
 	@Override
 	protected void dispatchDraw(Canvas canvas) {
-		super.dispatchDraw(canvas);
+		if (!mShowBlur) {
+			super.dispatchDraw(canvas);
+			return;
+		}
+
+		Canvas copy = mBuffer.lock(canvas, getWidth(), getHeight());
+		super.dispatchDraw(copy);
+		mBuffer.unlock(canvas);
 	}
 
-	public void setBlurEffect(BlurEffect blurEffect) {
-
+	void hideBlur() {
+		mShowBlur = false;
+		invalidate();
 	}
-	
+
+	void showBlur() {
+		mShowBlur = true;
+		invalidate();
+	}
+
 	/* private static Bitmap rs(Context context, Bitmap bitmap, int radius) throws RSRuntimeException {
     RenderScript rs = null;
     Allocation input = null;
