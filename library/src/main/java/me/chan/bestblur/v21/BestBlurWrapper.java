@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 class BestBlurWrapper extends FrameLayout {
 
 	private boolean mShowBlur = false;
-	private final BlurBuffer mBuffer = new BlurBuffer();
+	private final BlurBuffer mBuffer = new BlurBufferWrapper();
 
 
 	public BestBlurWrapper(@NonNull Context context) {
