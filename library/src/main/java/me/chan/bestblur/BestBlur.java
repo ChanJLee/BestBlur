@@ -1,7 +1,6 @@
 package me.chan.bestblur;
 
 import android.app.Application;
-import android.os.Build;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -39,11 +38,7 @@ public class BestBlur {
 		}
 
 		public BlurEffect build() {
-			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-				return new BlurEffectV31(this);
-			} else {
-				return new BlurEffectV21(this);
-			}
+			return new BlurEffectImpl(this);
 		}
 	}
 }

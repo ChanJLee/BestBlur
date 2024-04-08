@@ -2,7 +2,7 @@ package me.chan.bestblur;
 
 import android.graphics.Canvas;
 
-public class BlurBufferWrapper implements BlurBuffer{
+public class BlurBufferWrapper implements BlurBuffer {
 
 	@Override
 	public Canvas lock(Canvas canvas, int width, int height) {

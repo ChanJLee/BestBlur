@@ -1,4 +1,4 @@
-package me.chan.bestblur;
+package me.chan.bestblur.core;
 
 import android.content.Context;
 import android.graphics.Bitmap;

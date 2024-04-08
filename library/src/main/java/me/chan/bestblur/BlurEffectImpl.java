@@ -5,18 +5,17 @@ import android.view.ViewGroup;
 import android.view.ViewParent;
 import android.widget.FrameLayout;
 
-public class BlurEffectV21 implements BlurEffect {
+class BlurEffectImpl implements BlurEffect {
 	private final BestBlur.Builder mBuilder;
 	private BestBlurWrapper mWrapper;
 
-	public BlurEffectV21(BestBlur.Builder builder) {
+	public BlurEffectImpl(BestBlur.Builder builder) {
 		mBuilder = builder;
 	}
 
-	@Override
-	public void show() {
+	private void renderEffect() {
 		if (mWrapper != null) {
-			mWrapper.showBlur();
+			mWrapper.renderBlur(true);
 			return;
 		}
 
@@ -27,9 +26,7 @@ public class BlurEffectV21 implements BlurEffect {
 		}
 
 		if (viewParent instanceof BestBlurWrapper) {
-			mWrapper = (BestBlurWrapper) viewParent;
-			mWrapper.showBlur();
-			return;
+			throw new IllegalStateException("create blur effect on same view");
 		}
 
 		if (!(viewParent instanceof ViewGroup))  {
@@ -44,13 +41,22 @@ public class BlurEffectV21 implements BlurEffect {
 		mWrapper.setLayoutParams(params);
 		parent.addView(mWrapper, index);
 		mWrapper.addView(view, new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-		mWrapper.showBlur();
+		mWrapper.renderBlur(true);
+	}
+
+	private void hideEffect() {
+		if (mWrapper != null) {
+			mWrapper.renderBlur(false);
+		}
 	}
 
 	@Override
-	public void hide() {
-		if (mWrapper != null) {
-			mWrapper.hideBlur();
+	public void renderBlur(boolean enable) {
+		if (enable) {
+			renderEffect();
+			return;
 		}
+
+		hideEffect();
 	}
 }
