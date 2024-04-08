@@ -2,9 +2,9 @@ package me.chan.bestblur;
 
 import android.graphics.Canvas;
 
-public interface BlurBuffer {
+public interface RenderBuffer {
 
-	Canvas lock(Canvas canvas, int width, int height);
+	Canvas lock(int width, int height, boolean hardwareAccelerateEnable);
 
 	void unlock(Canvas canvas);
 

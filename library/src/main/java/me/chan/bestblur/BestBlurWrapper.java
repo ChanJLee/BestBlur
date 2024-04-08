@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 class BestBlurWrapper extends FrameLayout {
 
 	private boolean mEnableBlurEffect = false;
-	private final BlurBuffer mBuffer = new BlurBufferWrapper();
+	private final RenderBuffer mBuffer = new RenderBufferImpl();
 
 
 	public BestBlurWrapper(@NonNull Context context) {
@@ -23,7 +23,7 @@ class BestBlurWrapper extends FrameLayout {
 			return;
 		}
 
-		Canvas copy = mBuffer.lock(canvas, getWidth(), getHeight());
+		Canvas copy = mBuffer.lock(getWidth(), getHeight(), canvas.isHardwareAccelerated());
 		super.dispatchDraw(copy);
 		mBuffer.unlock(canvas);
 	}
