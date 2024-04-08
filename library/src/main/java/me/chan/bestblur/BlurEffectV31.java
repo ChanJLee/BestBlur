@@ -1,4 +1,4 @@
-package me.chan.bestblur.v31;
+package me.chan.bestblur;
 
 import android.graphics.RenderEffect;
 import android.graphics.Shader;

@@ -1,12 +1,9 @@
-package me.chan.bestblur.v21;
+package me.chan.bestblur;
 
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
 import android.widget.FrameLayout;
-
-import me.chan.bestblur.BestBlur;
-import me.chan.bestblur.BlurEffect;
 
 public class BlurEffectV21 implements BlurEffect {
 	private final BestBlur.Builder mBuilder;

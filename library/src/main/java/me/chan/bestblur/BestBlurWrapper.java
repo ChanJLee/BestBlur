@@ -1,4 +1,4 @@
-package me.chan.bestblur.v21;
+package me.chan.bestblur;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -38,7 +38,14 @@ class BestBlurWrapper extends FrameLayout {
 		invalidate();
 	}
 
-	/* private static Bitmap rs(Context context, Bitmap bitmap, int radius) throws RSRuntimeException {
+	@Override
+	protected void onDetachedFromWindow() {
+		mBuffer.release();
+		super.onDetachedFromWindow();
+	}
+
+
+/* private static Bitmap rs(Context context, Bitmap bitmap, int radius) throws RSRuntimeException {
     RenderScript rs = null;
     Allocation input = null;
     Allocation output = null;

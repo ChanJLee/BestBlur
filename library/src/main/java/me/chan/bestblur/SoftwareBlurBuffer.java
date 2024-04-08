@@ -1,8 +1,8 @@
-package me.chan.bestblur.v21;
+package me.chan.bestblur;
 
 import android.graphics.Canvas;
 
-public class BlurBufferWrapper implements BlurBuffer{
+public class SoftwareBlurBuffer implements BlurBuffer {
 
 	@Override
 	public Canvas lock(Canvas canvas, int width, int height) {
@@ -11,6 +11,11 @@ public class BlurBufferWrapper implements BlurBuffer{
 
 	@Override
 	public void unlock(Canvas canvas) {
+
+	}
+
+	@Override
+	public void release() {
 
 	}
 }

@@ -6,9 +6,6 @@ import android.view.View;
 
 import androidx.annotation.NonNull;
 
-import me.chan.bestblur.v21.BlurEffectV21;
-import me.chan.bestblur.v31.BlurEffectV31;
-
 public class BestBlur {
 
 	public static void init(Application application) {
